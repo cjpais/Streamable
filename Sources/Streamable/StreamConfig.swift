@@ -12,5 +12,9 @@ public struct StreamConfig: Encodable {
     var name: String
     var version: String
     
-    public init() { }
+    public init(namespace: String, name: String, version: String) {
+        self.namespace = namespace
+        self.name = name
+        self.version = version
+    }
 }

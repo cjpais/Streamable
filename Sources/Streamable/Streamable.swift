@@ -11,7 +11,10 @@ struct Streamable<T: Encodable>: Encodable {
     var config: StreamConfig
     var data: T
     
-    public init() { }
+    public init(config: StreamConfig, data: T) {
+        self.config = config
+        self.data = data
+    }
     
     public func sendStream(to baseURL: String) {
         let encoder = JSONEncoder()
