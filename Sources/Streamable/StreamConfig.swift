@@ -11,4 +11,6 @@ public struct StreamConfig: Encodable {
     var namespace: String
     var name: String
     var version: String
+    
+    public init { }
 }
