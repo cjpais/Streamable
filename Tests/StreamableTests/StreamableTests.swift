@@ -4,14 +4,14 @@ import XCTest
 class StreamableTests: XCTestCase {
     
     func testStreamConfigInit() {
-        let config = StreamConfig(namespace: "test", name: "test", version: "0.0.1", uuid: UUID(), location: nil)
+        let config = StreamConfig(namespace: "test", name: "test", version: "0.0.1", uuid: UUID())
         XCTAssertEqual(config.namespace, "test")
         XCTAssertEqual(config.name, "test")
         XCTAssertEqual(config.version, "0.0.1")
     }
     
     func testStreamableDataInit() {
-        let config = StreamConfig(namespace: "test", name: "test", version: "0.0.1", uuid: UUID(), location: nil)
+        let config = StreamConfig(namespace: "test", name: "test", version: "0.0.1", uuid: UUID())
         let streamable = StreamableData<String>(config: config, data: "test data")
         XCTAssertEqual(streamable.config.namespace, config.namespace)
         XCTAssertEqual(streamable.data, "test data")
@@ -26,6 +26,10 @@ class StreamableTests: XCTestCase {
         let streamable = StreamableData<String>(config: config, data: "test data")
         streamable.sendStream(to: "http://192.168.1.130:10000/dev", completionHandler: checkError)
         sleep(1)
+    }
+    
+    func testDate() {
+        
     }
     
     func testExistingUUID() {

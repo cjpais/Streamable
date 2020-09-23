@@ -20,7 +20,7 @@ public struct StreamConfig: Encodable {
     var uuid: UUID
     var location: Point?
     
-    public init(namespace: String, name: String, version: String, uuid: UUID, location: Point?) {
+    public init(namespace: String, name: String, version: String, uuid: UUID, location: Point? = nil) {
         self.namespace = namespace
         self.name = name
         self.version = version

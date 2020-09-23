@@ -8,9 +8,10 @@
 import Foundation
 
 public struct StreamableData<T: Encodable>: Encodable {
+    
     var config: StreamConfig
     var data: T
-    
+
     public init(config: StreamConfig, data: T) {
         self.config = config
         self.data = data
@@ -18,6 +19,10 @@ public struct StreamableData<T: Encodable>: Encodable {
     
     public func sendStream(to baseURL: String, completionHandler: @escaping (_: Error?) -> ()) {
         let encoder = JSONEncoder()
+        if #available(OSX 10.12, *) {
+            encoder.dateEncodingStrategy = .iso8601
+            print("encoding with iso8601")
+        }
         do {
             let data = try encoder.encode(self)
             if let url = URL(string: baseURL + "/stream") {
