@@ -17,12 +17,12 @@ public struct StreamableData<T: Encodable>: Encodable {
         self.data = data
     }
     
+    @available(iOS 10.0, *)
+    @available(OSX 10.12, *)
     public func sendStream(to baseURL: String, completionHandler: @escaping (_: Error?) -> ()) {
         let encoder = JSONEncoder()
-        if #available(OSX 10.12, *) {
-            encoder.dateEncodingStrategy = .iso8601
-            print("encoding with iso8601")
-        }
+        encoder.dateEncodingStrategy = .iso8601
+        print("encoding with iso8601")
         do {
             let data = try encoder.encode(self)
             if let url = URL(string: baseURL + "/stream") {

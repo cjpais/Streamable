@@ -1,6 +1,8 @@
 import XCTest
 @testable import Streamable
 
+@available(iOS 10.0, *)
+@available(OSX 10.12, *)
 class StreamableTests: XCTestCase {
     
     func testStreamConfigInit() {
