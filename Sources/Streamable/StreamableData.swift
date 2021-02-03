@@ -31,9 +31,10 @@ public struct StreamableData<T: Encodable>: Encodable {
                 print("sending to URL:", url.absoluteURL)
                 
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.setValue("Basic \(config.b64auth)", forHTTPHeaderField: "Authorization")
                 request.httpMethod = "POST"
                 request.httpBody = data
-                
+        
                 print("data is", String(data: data, encoding: .utf8)!)
                 
                 let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in

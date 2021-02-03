@@ -19,12 +19,14 @@ public struct StreamConfig: Encodable {
     var version: String
     var uuid: UUID
     var location: Point?
+    var b64auth: String
     
-    public init(namespace: String, name: String, version: String, uuid: UUID, location: Point? = nil) {
+    public init(namespace: String, name: String, version: String, uuid: UUID, location: Point? = nil, b64auth: String) {
         self.namespace = namespace
         self.name = name
         self.version = version
         self.uuid = uuid
         self.location = location
+        self.b64auth = b64auth
     }
 }
