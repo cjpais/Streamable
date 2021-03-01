@@ -7,22 +7,23 @@
 
 import Foundation
 
+@available(OSX 10.15, *)
 public struct StreamableData<T: Encodable>: Encodable {
     
     var config: StreamConfig
     var data: T
+    var userData: String?
 
-    public init(config: StreamConfig, data: T) {
+    public init(config: StreamConfig, data: T, userData: String? = nil) {
         self.config = config
         self.data = data
+        self.userData = userData // must be a base64 encoded string
     }
     
     @available(iOS 10.0, *)
-    @available(OSX 10.12, *)
     public func sendStream(to baseURL: String, completionHandler: @escaping (_: Error?) -> ()) {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-        print("encoding with iso8601")
         do {
             let data = try encoder.encode(self)
             if let url = URL(string: baseURL + "/stream") {
